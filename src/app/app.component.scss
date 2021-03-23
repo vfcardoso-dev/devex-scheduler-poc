@@ -1,13 +1,19 @@
 #scheduler {
 
     ::ng-deep .dx-scheduler-cell-sizes-horizontal {
-        width: 60px;
+        width: 50px;
     }
-    
+
     ::ng-deep .dx-scheduler-cell-sizes-vertical {
+        height: 50px !important;
+        min-height: 50px !important;
+        max-height: 50px !important;
     }
 
     ::ng-deep .dx-scheduler-group-header {
+        height: 50px !important;
+        min-height: 50px !important;
+        max-height: 50px !important;
     }
 
 }

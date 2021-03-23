@@ -1,30 +1,41 @@
-<dx-scheduler 
+<dx-scheduler
     id="scheduler"
     [dataSource]="appointments"
     textExpr="title"
     [(currentDate)]="currentDate"
     currentView="timelineMonth"
-    timeZone="Europe/Berlin"
+    timeZone="America/Sao_Paulo"
     [groups]="['workerId']"
-    [height]="300"
-    resourceCellTemplate="workerTemplate">
+    maxAppointmentsPerCell="unlimited"
+    resourceCellTemplate="workerTemplate"
+    dateCellTemplate="dateCellTemplate"
+    (onAppointmentClick)="toNull($event)"
+    (onAppointmentDblClick)="toNull($event)">
 
-    <dxi-view type="timelineMonth"></dxi-view>
+        <dxi-view name="2 Months"
+            type="timelineMonth"
+            [intervalCount]="2">
+        </dxi-view>
 
+        <dxi-resource
+            fieldExpr="workerId"
+            [allowMultiple]="false"
+            [dataSource]="workers"
+            label="Worker"
+        ></dxi-resource>
 
-    <dxi-resource
-        fieldExpr="workerId"
-        [allowMultiple]="false"
-        [dataSource]="workers"
-        label="Worker"
-    ></dxi-resource>
+        <div class="content-worker" *dxTemplate="let data of 'workerTemplate'">
+            <i style="color: blue">{{data.text}} - {{ data.id }}</i>
+            <button (click)="alert(data.id)"></button>
+        </div>
 
-    <div class="content-worker" *dxTemplate="let data of 'workerTemplate'">
-        <i style="color: blue">{{data.text}} - {{ data.id }}</i>
-    </div>
+        <div *dxTemplate="let date of 'dateCellTemplate'">
+            <b style="color: green">{{date.text}}</b>
+        </div>
 
-    <dxo-editing
-        [allowDragging]="false"
-        [allowTimeZoneEditing]="true">
-    </dxo-editing>
+        <dxo-editing
+            [allowResizing]="false"
+            [allowDragging]="false"
+            [allowTimeZoneEditing]="false">
+        </dxo-editing>
 </dx-scheduler>

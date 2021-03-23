@@ -9,12 +9,15 @@ import { Appointment, AppService, Worker } from './app.service';
 })
 export class AppComponent {
     appointments: Appointment[];
-    currentDate: Date = new Date(2021, 5, 22);
+    currentDate: Date = new Date(2021, 4, 23);
 
     workers: Array<Worker> = [];
     constructor(service: AppService) {
-      
+
       this.workers = service.getWorkers();
       this.appointments = service.getAppointments();
     }
+
+    public toNull = (evt: any) => { evt.cancel = true };
+    public alert = (s: any) => window.alert(s);
 }
