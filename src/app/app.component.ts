@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Appointment, AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'devex-scheduler-poc';
+    appointments: Appointment[];
+    currentDate: Date = new Date(2021, 4, 25);
+
+    constructor(service: AppService) {
+      this.appointments = service.getAppointments();
+    }
 }
