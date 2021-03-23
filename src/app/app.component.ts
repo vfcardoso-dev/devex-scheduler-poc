@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Appointment, AppService } from './app.service';
+import DataSource from 'devextreme/data/data_source';
+import { Appointment, AppService, Worker } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,12 @@ import { Appointment, AppService } from './app.service';
 })
 export class AppComponent {
     appointments: Appointment[];
-    currentDate: Date = new Date(2021, 4, 25);
+    currentDate: Date = new Date(2021, 5, 22);
 
+    workers: Array<Worker> = [];
     constructor(service: AppService) {
+      
+      this.workers = service.getWorkers();
       this.appointments = service.getAppointments();
     }
 }

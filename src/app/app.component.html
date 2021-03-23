@@ -1,21 +1,27 @@
-<dx-scheduler id="scheduler"
+<dx-scheduler 
+    id="scheduler"
     [dataSource]="appointments"
     textExpr="title"
-    allDayExpr="dayLong"
-    recurrenceRuleExpr="recurrence"
     [(currentDate)]="currentDate"
-    currentView="week"
+    currentView="timelineMonth"
     timeZone="Europe/Berlin"
-    [adaptivityEnabled]="true">
-    <dxi-view type="day" [startDayHour]="10" [endDayHour]="22"></dxi-view>
-    <dxi-view type="week" [startDayHour]="10" [endDayHour]="22"></dxi-view>
-    <dxi-view type="workWeek"></dxi-view>
-    <dxi-view type="month"></dxi-view>
-    <dxi-view type="timelineDay"></dxi-view>
-    <dxi-view type="timelineWeek"></dxi-view>
-    <dxi-view type="timelineWorkWeek"></dxi-view>
+    [groups]="['workerId']"
+    [height]="300"
+    resourceCellTemplate="workerTemplate">
+
     <dxi-view type="timelineMonth"></dxi-view>
-    <dxi-view type="agenda"></dxi-view>
+
+
+    <dxi-resource
+        fieldExpr="workerId"
+        [allowMultiple]="false"
+        [dataSource]="workers"
+        label="Worker"
+    ></dxi-resource>
+
+    <div class="content-worker" *dxTemplate="let data of 'workerTemplate'">
+        <i style="color: blue">{{data.text}} - {{ data.id }}</i>
+    </div>
 
     <dxo-editing
         [allowDragging]="false"
