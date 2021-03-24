@@ -48,10 +48,10 @@
         </dxo-editing>
 </dx-scheduler>
 
-<dx-context-menu
-    #contextMenu
+<dx-context-menu #contextMenu
+    [width]="200"
     [dataSource]="dataSource"
     (onItemClick)="onContextMenuItemClick($event)"
-    [width]="200"
+    (onShowing)="onContextMenuShowing($event)"
     (onHiding)="onContextMenuHiding($event)">
 </dx-context-menu>

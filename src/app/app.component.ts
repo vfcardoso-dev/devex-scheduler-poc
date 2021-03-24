@@ -1,55 +1,45 @@
-import { AbstractType, Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DxContextMenuComponent } from 'devextreme-angular';
-import DataSource from 'devextreme/data/data_source';
 import { Appointment, AppService, Worker } from './app.service';
 
+class MenuItem { text: string; action: (evt: any) => void }
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    appointments: Appointment[];
-    currentDate: Date = new Date(2021, 4, 23);
+    public appointments: Appointment[];
+    public currentDate: Date = new Date(2021, 4, 23);
+    public workers: Array<Worker> = [];
+    public cellContextMenuItems: MenuItem[];
+    public dataSource: any[] = []; // Opção do menu de contexto
 
-    workers: Array<Worker> = [];
-    cellContextMenuItems: any[];
-    dataSource: any[] = []; // Opção do menu de contexto
-    onContextMenuItemClick : any;
+    public onContextMenuItemClick: (evt: any) => void
+    public onContextMenuShowing: (evt: any) => void
 
     @ViewChild('contextMenu', { static: false }) contextMenu: DxContextMenuComponent;
 
     constructor(service: AppService) {
 
-      this.workers = service.getWorkers();
-      this.appointments = service.getAppointments();
+        this.workers = service.getWorkers();
+        this.appointments = service.getAppointments();
 
-      this.cellContextMenuItems = [
-        { text: 'Teste', onItemClick: this.alert },
-      ];
+        this.cellContextMenuItems = [
+            { text: 'Teste', action: (e) => this.alert(e.appointmentData.title) }
+        ];
     }
 
     public toNull = (evt: any) => { evt.cancel = true };
+
     public alert = (s: any) => window.alert(s);
 
-    onAppointmentContextMenu(e: any) {
-      this.dataSource = this.cellContextMenuItems;
-      this.onContextMenuItemClick = this.onItemClick(e);
-   }
-
-    onContextMenuHiding(e: any) {
-      this.dataSource = [];
-     }
-
-    onItemClick(contextMenuEvent) {
-        return function (e) {
-            e.itemData.onItemClick(contextMenuEvent, e);
-        }
+    public onAppointmentContextMenu = (ctxMenuEvt: any) => {
+        this.dataSource = this.cellContextMenuItems;
+        this.onContextMenuShowing = (evt) => evt.cancel = ctxMenuEvt.appointmentData.title === 'Install New Database'
+        this.onContextMenuItemClick = (e) => e.itemData.action(ctxMenuEvt);
     }
 
-    teste(e:any){
-      console.log(e);
-      return 'teste'
-    }
-
-  }
+    public onContextMenuHiding = (e: any) => this.dataSource = []
+}
