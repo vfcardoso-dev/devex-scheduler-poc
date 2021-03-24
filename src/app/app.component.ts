@@ -19,8 +19,8 @@ export class AppComponent {
     public minDate: Date = new Date(2021, 4, 1);
     public maxDate: Date = new Date(2021, 8, 20);
 
-    public onContextMenuItemClick: (evt: any) => void
-    public onContextMenuShowing: (evt: any) => void
+    public onContextMenuItemClick: (evt: any) => void = () => {}
+    public onContextMenuShowing: (evt: any) => void = () => {}
 
     @ViewChild('contextMenu', { static: false }) contextMenu: DxContextMenuComponent;
 
@@ -32,9 +32,6 @@ export class AppComponent {
         this.cellContextMenuItems = [
             { text: 'Teste', action: (e) => this.alert(e.appointmentData.title) }
         ]
-
-        this.onContextMenuItemClick = () => {};
-        this.onContextMenuShowing = () => {};
     }
 
     public toNull = (evt: any) => { evt.cancel = true };
