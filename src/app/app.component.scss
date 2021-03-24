@@ -1,5 +1,14 @@
 #scheduler {
 
+    ::ng-deep .dx-scheduler-work-space-count  {
+        padding-top: 0;
+        margin-top: 0;
+    }
+    
+    ::ng-deep .dx-scheduler-header-scrollable {
+        height: 50px;
+    }
+
     ::ng-deep .dx-scheduler-cell-sizes-horizontal {
         width: 50px;
     }
@@ -18,7 +27,7 @@
 
     ::ng-deep .dx-scheduler-header-panel {
         height: 50px !important;
-
+        margin-top: 0;
     }
 
     ::ng-deep .dx-scheduler-header-panel-cell {
