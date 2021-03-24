@@ -1,6 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { DxContextMenuComponent } from 'devextreme-angular';
 import { Appointment, AppService, Worker } from './app.service';
+import { locale, loadMessages } from "devextreme/localization";
+
+import * as ptMessages from "../assets/i18n/pt.json"
+import * as enMessages from "../assets/i18n/en.json"
 
 class MenuItem { text: string; action: (evt: any) => void }
 
@@ -19,12 +23,19 @@ export class AppComponent {
     public minDate: Date = new Date(2021, 4, 1);
     public maxDate: Date = new Date(2021, 8, 20);
 
+    public reloading: boolean = false;
+
     public onContextMenuItemClick: (evt: any) => void = () => {}
     public onContextMenuShowing: (evt: any) => void = () => {}
 
     @ViewChild('contextMenu', { static: false }) contextMenu: DxContextMenuComponent;
 
-    constructor(service: AppService) {
+    constructor(service: AppService, private cd: ChangeDetectorRef) {
+
+        loadMessages(ptMessages)
+        loadMessages(enMessages)
+
+        locale('en');
 
         this.workers = service.getWorkers();
         this.appointments = service.getAppointments();
@@ -32,6 +43,15 @@ export class AppComponent {
         this.cellContextMenuItems = [
             { text: 'Teste', action: (e) => this.alert(e.appointmentData.title) }
         ]
+    }
+
+    public changeLocale(lang: string) { // não dá: https://github.com/DevExpress/DevExtreme/issues/12074
+        this.reloading = true;
+        this.cd.detectChanges();
+
+        locale(lang)
+
+        setTimeout(() => this.reloading = false)
     }
 
     public toNull = (evt: any) => { evt.cancel = true };

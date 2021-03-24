@@ -1,4 +1,5 @@
-<dx-scheduler
+<h1 *ngIf="reloading">Carregando...</h1>
+<dx-scheduler *ngIf="!reloading"
     id="scheduler"
     [dataSource]="appointments"
     textExpr="title"
@@ -9,13 +10,13 @@
     [groups]="['workerId']"
     maxAppointmentsPerCell="unlimited"
     resourceCellTemplate="workerTemplate"
-    dateCellTemplate="dateCellTemplate"
+
     appointmentTemplate="appointmentTemplate"
     (onCellClick)="toNull($event)"
     (onCellContextMenu)="toNull($event)"
     (onAppointmentClick)="toNull($event)"
     (onAppointmentDblClick)="toNull($event)"
-    (onAppointmentContextMenu)="onAppointmentContextMenu($event)">
+    (onAppointmentContextMenu)="onAppointmentContextMenu($event)"> <!--dateCellTemplate="dateCellTemplate"-->
 
         <dxi-view name="2 Months"
             type="timelineMonth"
@@ -58,3 +59,7 @@
     (onShowing)="onContextMenuShowing($event)"
     (onHiding)="onContextMenuHiding($event)">
 </dx-context-menu>
+
+
+<button (click)="changeLocale('pt')">Lang => PT</button>
+<button (click)="changeLocale('en')">Lang => EN</button>
