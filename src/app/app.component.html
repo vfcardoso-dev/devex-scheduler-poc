@@ -30,8 +30,8 @@
             <button (click)="alert(data.id)"></button>
         </div>
 
-        <div *dxTemplate="let date of 'dateCellTemplate'">
-            <b style="color: green">{{date.text}}</b>
+        <div *dxTemplate="let data of 'dateCellTemplate'">
+            <span>{{data.date.getDate()}}/{{data.date.getMonth()+1}}</span>
         </div>
 
         <dxo-editing
