@@ -19,7 +19,7 @@ export class AppComponent {
     public cellContextMenuItems: MenuItem[];
     public dataSource: any[] = []; // Opção do menu de contexto
 
-    public currentDate: Date = new Date(2021, 4, 1);
+    // public currentDate: Date = new Date(2021, 4, 1);
     public minDate: Date = new Date(2021, 4, 1);
     public maxDate: Date = new Date(2021, 8, 20);
 
