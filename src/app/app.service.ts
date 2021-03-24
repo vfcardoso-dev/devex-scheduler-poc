@@ -30,18 +30,19 @@ const workers: Worker[] = [
 
 const appointments: Appointment[] = [
     {
-        title: "Install New Database",
+        title: "Iteração 1",
         startDate: new Date("2021-05-02T08:45:00.000Z"),
         endDate: new Date("2021-05-05T09:45:00.000Z"),
-        workerId: '1'
+        workerId: '1',
+        
     }, {
-        title: "Create New Online Marketing Strategy",
+        title: "Iteração 2",
         startDate: new Date("2021-05-03T09:00:00.000Z"),
         endDate: new Date("2021-05-10T11:00:00.000Z"),
         workerId: '2'
     },
     {
-        title: "222 Create New Online Marketing Strategy",
+        title: "Iteração 3",
         startDate: new Date("2021-05-15T09:00:00.000Z"),
         endDate: new Date("2021-05-20T11:00:00.000Z"),
         workerId: '2'

@@ -1,3 +1,4 @@
+import { WorkerComponent } from './worker/worker.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -7,7 +8,8 @@ import { DxSchedulerModule, DxContextMenuModule} from 'devextreme-angular';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WorkerComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@
     maxAppointmentsPerCell="unlimited"
     resourceCellTemplate="workerTemplate"
     dateCellTemplate="dateCellTemplate"
+    appointmentTemplate="appointmentTemplate"
     (onAppointmentClick)="toNull($event)"
     (onAppointmentDblClick)="toNull($event)"
     (onAppointmentContextMenu)="onAppointmentContextMenu($event)">
@@ -25,13 +26,19 @@
             label="Worker"
         ></dxi-resource>
 
-        <div class="content-worker" *dxTemplate="let data of 'workerTemplate'">
-            <i style="color: blue">{{data.text}} - {{ data.id }}</i>
-            <button (click)="alert(data.id)"></button>
+        <div class="content-worker" *dxTemplate="let worker of 'workerTemplate'">
+            <app-worker [worker]="worker.data"></app-worker>
         </div>
 
         <div *dxTemplate="let data of 'dateCellTemplate'">
-            <span>{{data.date.getDate()}}/{{data.date.getMonth()+1}}</span>
+            <span>{{ data.date.getDate() }}/{{ data.date.getMonth()+1 }}</span>
+        </div>
+
+        <div style="background-color: red;" *dxTemplate="let model of 'appointmentTemplate'">
+            <span>{{ model.appointmentData.startDate }}</span>
+            <div>
+                <strong>{{ model.appointmentData.title }}</strong>
+            </div>
         </div>
 
         <dxo-editing

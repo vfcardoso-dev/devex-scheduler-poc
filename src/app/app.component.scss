@@ -16,4 +16,31 @@
         max-height: 50px !important;
     }
 
+    ::ng-deep .dx-scheduler-header-panel {
+        height: 50px !important;
+        
+    }
+    
+    ::ng-deep .dx-scheduler-header-panel-cell {
+        height: 50px !important;
+        background: #F3F4F5;
+        font-weight: 600;
+        color: #5E5555;
+        border-top: 1px solid #D8D9DA;
+        border-bottom: 1px solid #D8D9DA;
+
+        &:first-child {
+            border-left: 1px solid #D8D9DA;
+        }
+
+        &:last-child {
+            border-left: 1px solid #D8D9DA;
+        }
+    }
+
+    ::ng-deep .dx-scheduler-header {
+        display: none;
+    }
+
+
 }

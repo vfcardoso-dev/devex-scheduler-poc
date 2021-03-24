@@ -18,6 +18,7 @@ export class AppComponent {
     onContextMenuItemClick : any;
 
     @ViewChild('contextMenu', { static: false }) contextMenu: DxContextMenuComponent;
+
     constructor(service: AppService) {
 
       this.workers = service.getWorkers();
@@ -44,6 +45,11 @@ export class AppComponent {
         return function (e) {
             e.itemData.onItemClick(contextMenuEvent, e);
         }
+    }
+
+    teste(e:any){
+      console.log(e);
+      return 'teste'
     }
 
   }
