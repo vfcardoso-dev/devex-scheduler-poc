@@ -11,10 +11,13 @@ class MenuItem { text: string; action: (evt: any) => void }
 })
 export class AppComponent {
     public appointments: Appointment[];
-    public currentDate: Date = new Date(2021, 4, 23);
     public workers: Array<Worker> = [];
     public cellContextMenuItems: MenuItem[];
     public dataSource: any[] = []; // Opção do menu de contexto
+
+    public currentDate: Date = new Date(2021, 4, 1);
+    public minDate: Date = new Date(2021, 4, 1);
+    public maxDate: Date = new Date(2021, 8, 20);
 
     public onContextMenuItemClick: (evt: any) => void
     public onContextMenuShowing: (evt: any) => void
