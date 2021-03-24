@@ -36,8 +36,11 @@ export class AppComponent {
     public alert = (s: any) => window.alert(s);
 
     public onAppointmentContextMenu = (ctxMenuEvt: any) => {
+        ctxMenuEvt.event.preventDefault();
+
         this.dataSource = this.cellContextMenuItems;
-        this.onContextMenuShowing = (evt) => evt.cancel = ctxMenuEvt.appointmentData.title === 'Install New Database'
+
+        this.onContextMenuShowing = (evt) => evt.cancel = ctxMenuEvt.appointmentData.title === 'Iteração 1'
         this.onContextMenuItemClick = (e) => e.itemData.action(ctxMenuEvt);
     }
 
