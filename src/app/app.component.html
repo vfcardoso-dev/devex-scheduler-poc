@@ -10,7 +10,8 @@
     resourceCellTemplate="workerTemplate"
     dateCellTemplate="dateCellTemplate"
     (onAppointmentClick)="toNull($event)"
-    (onAppointmentDblClick)="toNull($event)">
+    (onAppointmentDblClick)="toNull($event)"
+    (onAppointmentContextMenu)="onAppointmentContextMenu($event)">
 
         <dxi-view name="2 Months"
             type="timelineMonth"
@@ -39,3 +40,11 @@
             [allowTimeZoneEditing]="false">
         </dxo-editing>
 </dx-scheduler>
+
+<dx-context-menu
+    #contextMenu
+    [dataSource]="dataSource"
+    (onItemClick)="onContextMenuItemClick($event)"
+    [width]="200"
+    (onHiding)="onContextMenuHiding($event)">
+</dx-context-menu>
