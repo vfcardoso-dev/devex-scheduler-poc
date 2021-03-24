@@ -19,8 +19,8 @@ export class AppComponent {
     public minDate: Date = new Date(2021, 4, 1);
     public maxDate: Date = new Date(2021, 8, 20);
 
-    public onContextMenuItemClick: (evt: any) => void
-    public onContextMenuShowing: (evt: any) => void
+    public onContextMenuItemClick: (evt: any) => void = () => {}
+    public onContextMenuShowing: (evt: any) => void = () => {}
 
     @ViewChild('contextMenu', { static: false }) contextMenu: DxContextMenuComponent;
 
@@ -31,7 +31,7 @@ export class AppComponent {
 
         this.cellContextMenuItems = [
             { text: 'Teste', action: (e) => this.alert(e.appointmentData.title) }
-        ];
+        ]
     }
 
     public toNull = (evt: any) => { evt.cancel = true };
@@ -39,8 +39,11 @@ export class AppComponent {
     public alert = (s: any) => window.alert(s);
 
     public onAppointmentContextMenu = (ctxMenuEvt: any) => {
+        ctxMenuEvt.event.preventDefault();
+
         this.dataSource = this.cellContextMenuItems;
-        this.onContextMenuShowing = (evt) => evt.cancel = ctxMenuEvt.appointmentData.title === 'Install New Database'
+
+        this.onContextMenuShowing = (evt) => evt.cancel = ctxMenuEvt.appointmentData.title === 'Iteração 1'
         this.onContextMenuItemClick = (e) => e.itemData.action(ctxMenuEvt);
     }
 

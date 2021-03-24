@@ -18,9 +18,9 @@
 
     ::ng-deep .dx-scheduler-header-panel {
         height: 50px !important;
-        
+
     }
-    
+
     ::ng-deep .dx-scheduler-header-panel-cell {
         height: 50px !important;
         background: #F3F4F5;
@@ -42,5 +42,5 @@
         display: none;
     }
 
-
+    .closed { cursor: not-allowed }
 }

@@ -37,7 +37,7 @@
             <span>{{ data.date.getDate() }}/{{ data.date.getMonth()+1 }}</span>
         </div>
 
-        <div *dxTemplate="let model of 'appointmentTemplate'">
+        <div *dxTemplate="let model of 'appointmentTemplate'" [class.closed]="model.appointmentData.title === 'Iteração 1'">
             <span>{{ model.appointmentData.startDate }}</span>
             <div>
                 <strong>{{ model.appointmentData.title }}</strong>
