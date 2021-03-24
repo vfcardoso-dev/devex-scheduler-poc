@@ -31,20 +31,20 @@ const workers: Worker[] = [
 const appointments: Appointment[] = [
     {
         title: "Iteração 1",
-        startDate: new Date("2021-05-02T08:45:00.000Z"),
-        endDate: new Date("2021-05-05T09:45:00.000Z"),
+        startDate: new Date("2021-03-02T08:45:00.000Z"),
+        endDate: new Date("2021-03-05T09:45:00.000Z"),
         workerId: '1',
-        
+
     }, {
         title: "Iteração 2",
-        startDate: new Date("2021-05-03T09:00:00.000Z"),
-        endDate: new Date("2021-05-10T11:00:00.000Z"),
+        startDate: new Date("2021-03-03T09:00:00.000Z"),
+        endDate: new Date("2021-03-10T11:00:00.000Z"),
         workerId: '2'
     },
     {
         title: "Iteração 3",
-        startDate: new Date("2021-05-15T09:00:00.000Z"),
-        endDate: new Date("2021-05-20T11:00:00.000Z"),
+        startDate: new Date("2021-03-15T09:00:00.000Z"),
+        endDate: new Date("2021-03-20T11:00:00.000Z"),
         workerId: '2'
     }
 ];

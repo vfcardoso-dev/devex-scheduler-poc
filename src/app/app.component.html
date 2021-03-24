@@ -2,7 +2,8 @@
     id="scheduler"
     [dataSource]="appointments"
     textExpr="title"
-    [(currentDate)]="currentDate"
+    [min]="minDate"
+    [max]="maxDate"
     currentView="timelineMonth"
     timeZone="America/Sao_Paulo"
     [groups]="['workerId']"
@@ -10,6 +11,8 @@
     resourceCellTemplate="workerTemplate"
     dateCellTemplate="dateCellTemplate"
     appointmentTemplate="appointmentTemplate"
+    (onCellClick)="toNull($event)"
+    (onCellContextMenu)="toNull($event)"
     (onAppointmentClick)="toNull($event)"
     (onAppointmentDblClick)="toNull($event)"
     (onAppointmentContextMenu)="onAppointmentContextMenu($event)">
@@ -34,7 +37,7 @@
             <span>{{ data.date.getDate() }}/{{ data.date.getMonth()+1 }}</span>
         </div>
 
-        <div style="background-color: red;" *dxTemplate="let model of 'appointmentTemplate'">
+        <div *dxTemplate="let model of 'appointmentTemplate'">
             <span>{{ model.appointmentData.startDate }}</span>
             <div>
                 <strong>{{ model.appointmentData.title }}</strong>
