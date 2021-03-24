@@ -31,7 +31,10 @@ export class AppComponent {
 
         this.cellContextMenuItems = [
             { text: 'Teste', action: (e) => this.alert(e.appointmentData.title) }
-        ];
+        ]
+
+        this.onContextMenuItemClick = () => {};
+        this.onContextMenuShowing = () => {};
     }
 
     public toNull = (evt: any) => { evt.cancel = true };
