@@ -60,4 +60,13 @@ export class AppService {
     getWorkers(): Worker[] {
         return workers;
     }
+
+    addAppointment(): void {
+        appointments.push({
+            title: "Iteração 4",
+            startDate: new Date("2021-03-21T09:00:00.000Z"),
+            endDate: new Date("2021-03-23T11:00:00.000Z"),
+            workerId: '1'
+        })
+    }
 }

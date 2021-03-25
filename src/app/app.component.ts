@@ -35,7 +35,7 @@ export class AppComponent {
 
     @ViewChild('contextMenu', { static: false }) contextMenu: DxContextMenuComponent;
 
-    constructor(service: AppService, private cd: ChangeDetectorRef) {
+    constructor(private service: AppService, private cd: ChangeDetectorRef) {
 
         loadMessages(ptMessages)
         loadMessages(enMessages)
@@ -59,7 +59,7 @@ export class AppComponent {
         setTimeout(() => this.reloading = false)
     }
 
-    public test = console.log
+    public addAppointment = () => this.service.addAppointment();
 
     public toNull = (evt: any) => { evt.cancel = true };
 
