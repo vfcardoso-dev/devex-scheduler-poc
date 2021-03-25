@@ -1,55 +1,59 @@
-#scheduler {
+.dates {
+    margin-bottom: 15px
+}
 
-    ::ng-deep .dx-scheduler-work-space-count  {
-        padding-top: 0;
-        margin-top: 0;
-    }
-    
-    ::ng-deep .dx-scheduler-header-scrollable {
-        height: 50px;
-    }
+main {
+    display: flex;
+    flex-direction: column;
 
-    ::ng-deep .dx-scheduler-cell-sizes-horizontal {
-        width: 50px;
-    }
+    #scheduler {
 
-    ::ng-deep .dx-scheduler-cell-sizes-vertical {
-        height: 50px !important;
-        min-height: 50px !important;
-        max-height: 50px !important;
-    }
-
-    ::ng-deep .dx-scheduler-group-header {
-        height: 50px !important;
-        min-height: 50px !important;
-        max-height: 50px !important;
-    }
-
-    ::ng-deep .dx-scheduler-header-panel {
-        height: 50px !important;
-        margin-top: 0;
-    }
-
-    ::ng-deep .dx-scheduler-header-panel-cell {
-        height: 50px !important;
-        background: #F3F4F5;
-        font-weight: 600;
-        color: #5E5555;
-        border-top: 1px solid #D8D9DA;
-        border-bottom: 1px solid #D8D9DA;
-
-        &:first-child {
-            border-left: 1px solid #D8D9DA;
+        ::ng-deep .dx-scheduler-work-space-count, ::ng-deep .dx-scheduler-work-space  {
+            padding-top: 0;
+            margin-top: 0;
+            border: 1px solid #dedede;
         }
 
-        &:last-child {
-            border-left: 1px solid #D8D9DA;
+        ::ng-deep .dx-scheduler-header-scrollable {
+            height: 50px;
         }
-    }
 
-    ::ng-deep .dx-scheduler-header {
-        display: none;
-    }
+        ::ng-deep .dx-scheduler-cell-sizes-horizontal {
+            width: 50px;
+        }
 
-    .closed { cursor: not-allowed }
+        ::ng-deep .dx-scheduler-cell-sizes-vertical {
+            height: 50px !important;
+            min-height: 50px !important;
+            max-height: 50px !important;
+        }
+
+        ::ng-deep .dx-scheduler-group-header {
+            height: 50px !important;
+            min-height: 50px !important;
+            max-height: 50px !important;
+        }
+
+        ::ng-deep .dx-scheduler-header-panel {
+            height: 50px !important;
+            margin-top: 0;
+        }
+
+        ::ng-deep .dx-scheduler-header-panel-cell {
+            height: 50px !important;
+            background: #F3F4F5;
+            font-weight: 600;
+            color: #5E5555;
+        }
+
+        ::ng-deep .dx-scheduler-header {
+            display: none;
+        }
+
+        .closed { cursor: not-allowed }
+    }
+}
+
+.button-wrapper {
+    margin-top: 15px;
 }

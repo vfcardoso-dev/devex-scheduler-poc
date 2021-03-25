@@ -19,9 +19,14 @@ export class AppComponent {
     public cellContextMenuItems: MenuItem[];
     public dataSource: any[] = []; // Opção do menu de contexto
 
-    // public currentDate: Date = new Date(2021, 4, 1);
-    public minDate: Date = new Date(2021, 4, 1);
-    public maxDate: Date = new Date(2021, 8, 20);
+    private _currentDate: Date = new Date();
+
+    public get currentDate() { return this._currentDate }
+    public set currentDate(value: any) {
+        const dtValue = typeof value === 'string' ? `${value}-02` : value; // Master POG
+
+        this._currentDate = new Date(dtValue);
+    }
 
     public reloading: boolean = false;
 
@@ -53,6 +58,8 @@ export class AppComponent {
 
         setTimeout(() => this.reloading = false)
     }
+
+    public test = console.log
 
     public toNull = (evt: any) => { evt.cancel = true };
 

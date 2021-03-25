@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DxSchedulerModule, DxContextMenuModule} from 'devextreme-angular';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { DxSchedulerModule, DxContextMenuModule} from 'devextreme-angular';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     DxSchedulerModule,
     AppRoutingModule,
     DxContextMenuModule

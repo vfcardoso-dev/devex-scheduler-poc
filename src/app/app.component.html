@@ -1,65 +1,75 @@
-<h1 *ngIf="reloading">Carregando...</h1>
-<dx-scheduler *ngIf="!reloading"
-    id="scheduler"
-    [dataSource]="appointments"
-    textExpr="title"
-    [min]="minDate"
-    [max]="maxDate"
-    currentView="timelineMonth"
-    timeZone="America/Sao_Paulo"
-    [groups]="['workerId']"
-    maxAppointmentsPerCell="unlimited"
-    resourceCellTemplate="workerTemplate"
+<div class="dates">
+    <input type="month" [ngModel] ="currentDate | date:'yyyy-MM'" (ngModelChange)="currentDate = $event">
+</div>
 
-    appointmentTemplate="appointmentTemplate"
-    (onCellClick)="toNull($event)"
-    (onCellContextMenu)="toNull($event)"
-    (onAppointmentClick)="toNull($event)"
-    (onAppointmentDblClick)="toNull($event)"
-    (onAppointmentContextMenu)="onAppointmentContextMenu($event)"> <!--dateCellTemplate="dateCellTemplate"-->
+<main>
+    <h1 *ngIf="reloading">Carregando...</h1>
+    <dx-scheduler *ngIf="!reloading"
+        id="scheduler"
+        [dataSource]="appointments"
+        textExpr="title"
+        [(currentDate)]="currentDate"
+        currentView="timelineMonth"
+        timeZone="America/Sao_Paulo"
+        [groups]="['workerId']"
+        maxAppointmentsPerCell="unlimited"
+        resourceCellTemplate="workerTemplate"
+        dateCellTemplate="dateCellTemplate"
+        appointmentTemplate="appointmentTemplate"
+        (onCellClick)="toNull($event)"
+        (onCellContextMenu)="toNull($event)"
+        (onAppointmentClick)="toNull($event)"
+        (onAppointmentDblClick)="toNull($event)"
+        (onAppointmentContextMenu)="onAppointmentContextMenu($event)">
 
-        <dxi-view name="2 Months"
-            type="timelineMonth"
-            [intervalCount]="2">
-        </dxi-view>
+            <!-- <dxi-view name="2 Months"
+                type="timelineMonth"
+                [intervalCount]="2">
+            </dxi-view> -->
 
-        <dxi-resource
-            fieldExpr="workerId"
-            [allowMultiple]="false"
-            [dataSource]="workers"
-            label="Worker"
-        ></dxi-resource>
+            <dxi-view type="timelineMonth">
+            </dxi-view>
 
-        <div class="content-worker" *dxTemplate="let worker of 'workerTemplate'">
-            <app-worker [worker]="worker.data"></app-worker>
-        </div>
+            <dxi-resource
+                fieldExpr="workerId"
+                [allowMultiple]="false"
+                [dataSource]="workers"
+                label="Worker"
+            ></dxi-resource>
 
-        <div *dxTemplate="let data of 'dateCellTemplate'">
-            <span>{{ data.date.getDate() }}/{{ data.date.getMonth()+1 }}</span>
-        </div>
-
-        <div *dxTemplate="let model of 'appointmentTemplate'" [class.closed]="model.appointmentData.title === 'Iteração 1'">
-            <span>{{ model.appointmentData.startDate }}</span>
-            <div>
-                <strong>{{ model.appointmentData.title }}</strong>
+            <div class="content-worker" *dxTemplate="let worker of 'workerTemplate'">
+                <app-worker [worker]="worker.data"></app-worker>
             </div>
-        </div>
 
-        <dxo-editing
-            [allowResizing]="false"
-            [allowDragging]="false"
-            [allowTimeZoneEditing]="false">
-        </dxo-editing>
-</dx-scheduler>
+            <div *dxTemplate="let data of 'dateCellTemplate'">
+                <div>{{ data.date.getFullYear() }}-{{ data.date.getMonth()+1 }}</div>
+                <div>{{ data.text }}</div>
+            </div>
 
-<dx-context-menu #contextMenu
-    [width]="200"
-    [dataSource]="dataSource"
-    (onItemClick)="onContextMenuItemClick($event)"
-    (onShowing)="onContextMenuShowing($event)"
-    (onHiding)="onContextMenuHiding($event)">
-</dx-context-menu>
+            <div *dxTemplate="let model of 'appointmentTemplate'" [class.closed]="model.appointmentData.title === 'Iteração 1'">
+                <span>{{ model.appointmentData.startDate }}</span>
+                <div>
+                    <strong>{{ model.appointmentData.title }}</strong>
+                </div>
+            </div>
 
+            <dxo-editing
+                [allowResizing]="false"
+                [allowDragging]="false"
+                [allowTimeZoneEditing]="false">
+            </dxo-editing>
+    </dx-scheduler>
+    <dx-context-menu #contextMenu
+        [width]="200"
+        [dataSource]="dataSource"
+        (onItemClick)="onContextMenuItemClick($event)"
+        (onShowing)="onContextMenuShowing($event)"
+        (onHiding)="onContextMenuHiding($event)">
+    </dx-context-menu>
+</main>
 
-<button (click)="changeLocale('pt')">Lang => PT</button>
-<button (click)="changeLocale('en')">Lang => EN</button>
+<div class="button-wrapper">
+    <button (click)="changeLocale('pt')">Lang => PT</button>
+    <button (click)="changeLocale('en')">Lang => EN</button>
+</div>
+
